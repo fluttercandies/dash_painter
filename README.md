@@ -2,7 +2,7 @@
 
 a package for flutter canvas paint dash line path easily.
 
-#### 1. 如何使用
+#### 1. `DashPainter` 如何使用
 
 `DashPainter` 只负责对 `路径 Path` 的虚线化绘制，不承担组件职能。
 一般用在拥有 `Canvas` 对象的回调方法中，比如自定义的 `CustomPainter`、`Decoration`。
@@ -53,3 +53,35 @@ const DashPainter(
 `点画线圆`：
 
 ![](https://gitee.com/toly1994/toly_blog_pic/raw/master/image-20210510072143441.png)
+
+---
+
+#### `DashPainter`
+
+可能很多人不会自定义画板自己绘制，或只想简单地使用。其实除了 `CustomPainter` 还有其他地方有 `canvas`。比如 `Decoration` 。
+这里提供了 `DashDecoration` 的装饰，方便使用。如下实现一个`渐变的单点画线圆角虚线框`。
+
+![](https://gitee.com/toly1994/toly_blog_pic/raw/master/image-20210510091605411.png)
+
+```dart
+Container(
+  width: 100,
+  height: 100,
+  decoration: DashDecoration(
+      pointWidth: 2,
+      step: 5,
+      pointCount: 1,
+      radius: Radius.circular(15),
+      gradient: SweepGradient(colors: [
+        Colors.blue,
+        Colors.red,
+        Colors.yellow,
+        Colors.green
+      ])),
+  child: Icon(
+    Icons.add,
+    color: Colors.orangeAccent,
+    size: 40,
+  ),
+),
+```
